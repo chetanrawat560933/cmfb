@@ -43,7 +43,7 @@ const AppHeader = () => {
         </CHeaderNav>
         <CHeaderNav>
           <CNavItem>
-            <CNavLink href="#">
+            <CNavLink href="/#/dashboard">
               <CIcon icon={cilBell} size="lg" />
             </CNavLink>
           </CNavItem>
