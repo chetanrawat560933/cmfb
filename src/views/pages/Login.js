@@ -24,7 +24,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (email && password) {
-      history('/dashboard')
+      if (email === 'user@gmail.com' && password === 'user12') {
+        history('/home')
+      } else if (email === 'admin@gmail.com' && password === 'admin12') {
+        history('/dashboard')
+      } else {
+        history('/dashboard')
+      }
     }
   }
   return (
