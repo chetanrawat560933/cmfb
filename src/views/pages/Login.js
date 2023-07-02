@@ -88,7 +88,7 @@ const Login = () => {
               <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
                 <CCardBody className="text-center">
                   <div>
-                    <h2>Sign up</h2>
+                    <h2 className="font-white">Sign up</h2>
                     <Link to="/register">
                       <CButton color="primary" className="mt-3" active tabIndex={-1}>
                         Register Now!

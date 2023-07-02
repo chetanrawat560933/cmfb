@@ -35,21 +35,21 @@ const Home = (props) => {
         <CContainer fluid>
           <CHeaderNav className="d-none d-md-flex me-auto">
             <CNavItem>
-              <CNavLink to="/home" component={NavLink} className='font-bold font-white'>
-                Home
+              <CNavLink to="/home" component={NavLink} className='logo font-bold font-white'>
+                CMFB
               </CNavLink>
             </CNavItem>
           </CHeaderNav>
           <CHeaderNav>
             <a className="btn btn-custom font-bold font-white" href="/">
+              Find Food Bank
+            </a>
+            <a className="btn btn-custom font-bold font-white" href="/">
               Donate Now
             </a>
-            <CNavItem>
-              <CNavLink href="/#/home">
-                <CIcon icon={cilBell} size="lg" className='font-white'/>
-              </CNavLink>
-            </CNavItem>
-            <AppHeaderDropdown />
+            <a className="btn btn-custom font-bold font-white" href="/#/login">
+              Login
+            </a>
           </CHeaderNav>
         </CContainer>
       </CHeader>

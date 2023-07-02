@@ -1,54 +1,58 @@
 // Here you can add other styles
-.font-bold{
+.logo {
+    font-size: 40px;
+}
+
+.font-bold {
     font-weight: bold !important;
 }
 
-.font-white{
+.font-white {
     color: #ffffff !important;
 }
 
-.header{
+.header {
     background: #20212B !important;
     border: 0;
 }
 
-.form-control.form-profile{
+.form-control.form-profile {
     max-width: 1000px;
 }
 
-.container-signin{
+.container-signin {
     width: 500px;
 }
 
-.input-group-description{
+.input-group-description {
     height: 100px;
 }
 
-.hr-request-fund{
-    background-color:#e91e63;
+.hr-request-fund {
+    background-color: #e91e63;
     height: 3px;
     opacity: 55%;
 }
 
-.img-footer{
+.img-footer {
     width: 200px;
-    height:auto;
+    height: auto;
 }
 
-.img-navbar{
+.img-navbar {
     width: 170px;
     height: auto;
 }
 
-.profile-image{
+.profile-image {
     width: 110px;
     height: auto;
 }
 
-.card-signin{
+.card-signin {
     width: 500px;
 }
 
-.card-step-2{
+.card-step-2 {
     width: 550px;
 }
