@@ -1,0 +1,136 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "phoneNumber": "1234567890",
+      "address": "123 Main Street, City, Country",
+      "role": "Admin"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "phoneNumber": "9876543210",
+      "address": "456 Elm Street, City, Country",
+      "role": "User"
+    },
+    {
+      "id": 3,
+      "name": "Bob Johnson",
+      "email": "bobjohnson@example.com",
+      "phoneNumber": "5551234567",
+      "address": "789 Oak Street, City, Country",
+      "role": "User"
+    },
+    {
+      "id": 4,
+      "name": "Alice Brown",
+      "email": "alicebrown@example.com",
+      "phoneNumber": "1112223333",
+      "address": "987 Pine Street, City, Country",
+      "role": "Volunteer"
+    },
+    {
+      "id": 5,
+      "name": "Mike Wilson",
+      "email": "mikewilson@example.com",
+      "phoneNumber": "4445556666",
+      "address": "654 Cedar Street, City, Country",
+      "role": "Volunteer"
+    },
+    {
+      "id": 6,
+      "name": "Emily Davis",
+      "email": "emilydavis@example.com",
+      "phoneNumber": "7778889999",
+      "address": "321 Walnut Street, City, Country",
+      "role": "Volunteer"
+    },
+    {
+      "id": 7,
+      "name": "David Lee",
+      "email": "davidlee@example.com",
+      "phoneNumber": "9998887777",
+      "address": "456 Oak Street, City, Country",
+      "role": "Volunteer"
+    },
+    {
+      "id": 8,
+      "name": "Sarah Johnson",
+      "email": "sarahjohnson@example.com",
+      "phoneNumber": "2223334444",
+      "address": "789 Elm Street, City, Country",
+      "role": "User"
+    },
+    {
+      "id": 9,
+      "name": "Michael Smith",
+      "email": "michaelsmith@example.com",
+      "phoneNumber": "6667778888",
+      "address": "123 Cedar Street, City, Country",
+      "role": "User"
+    },
+    {
+      "id": 10,
+      "name": "Karen Davis",
+      "email": "karendavis@example.com",
+      "phoneNumber": "5554443333",
+      "address": "987 Walnut Street, City, Country",
+      "role": "User"
+    }
+  ],
+  "foodBanks": [
+    {
+      "id": 1,
+      "address": "123 Main Street, Toronto, Ontario, Canada",
+      "location": "Toronto"
+    },
+    {
+      "id": 2,
+      "address": "456 Elm Street, Vancouver, British Columbia, Canada",
+      "location": "Vancouver"
+    },
+    {
+      "id": 3,
+      "address": "789 Oak Street, Montreal, Quebec, Canada",
+      "location": "Montreal"
+    },
+    {
+      "id": 4,
+      "address": "987 Pine Street, Calgary, Alberta, Canada",
+      "location": "Calgary"
+    },
+    {
+      "id": 5,
+      "address": "654 Cedar Street, Ottawa, Ontario, Canada",
+      "location": "Ottawa"
+    },
+    {
+      "id": 6,
+      "address": "321 Walnut Street, Edmonton, Alberta, Canada",
+      "location": "Edmonton"
+    },
+    {
+      "id": 7,
+      "address": "456 Oak Street, Quebec City, Quebec, Canada",
+      "location": "Quebec City"
+    },
+    {
+      "id": 8,
+      "address": "789 Elm Street, Winnipeg, Manitoba, Canada",
+      "location": "Winnipeg"
+    },
+    {
+      "id": 9,
+      "address": "123 Cedar Street, Hamilton, Ontario, Canada",
+      "location": "Hamilton"
+    },
+    {
+      "id": 10,
+      "address": "987 Walnut Street, London, Ontario, Canada",
+      "location": "London"
+    }
+  ]
+}

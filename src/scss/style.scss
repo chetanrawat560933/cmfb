@@ -15,6 +15,7 @@ $enable-rtl: true;
 
 // If you want to add custom CSS you can put it here.
 @import "custom";
+
 /*******************************/
 /********* General CSS *********/
 /*******************************/
@@ -26,10 +27,10 @@ body {
 }
 
 h1,
-h2, 
-h3, 
+h2,
+h3,
 h4,
-h5, 
+h5,
 h6 {
     color: #4a4c70;
 }
@@ -49,8 +50,8 @@ a:focus {
 
 .btn.btn-custom {
     padding: 12px 20px;
-    text-align: center; 
-   font-size: 16px;
+    text-align: center;
+    font-size: 16px;
     font-weight: 500;
     color: #777777;
     border-radius: 0;
@@ -66,6 +67,56 @@ a:focus {
     box-shadow: inset 0 0 0 30px #FDBE33;
 }
 
+.createAccount{
+    margin: 25px auto;
+}
+
+.login {
+    width: 55%;
+    height: 45px;
+    padding: 10px;
+}
+
+.registerBtn{
+    width: 60%;
+    border-radius: 10px !important;
+}
+
+.btn-dark-yellow.btn.btn-custom {
+    font-weight: bold;
+    background-color: #27282e !important;
+    color: #ffffff !important;
+    border: 2px solid #FDBE33 !important;
+    box-shadow: inset 0 0 0 0 #ffffff !important;
+}
+
+.btn-dark-yellow.btn.btn-custom:hover {
+    font-weight: bold;
+    background-color: #FDBE33 !important;
+    color: #ffffff !important;
+    border: 2px solid #FDBE33 !important;
+    box-shadow: inset 0 0 0 30px #FDBE33 !important;
+}
+
+.btn-dark.btn.btn-custom {
+    font-weight: bold;
+    height: 45px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #20212B !important;
+    color: #ffffff !important;
+    border: 2px solid #20212B !important;
+    box-shadow: inset 0 0 0 0 #ffffff !important;
+}
+
+.btn-dark.btn.btn-custom:hover {
+    font-weight: bold;
+    background-color: #20212B !important;
+    color: #20212B !important;
+    border: 2px solid #20212B!important;
+    box-shadow: inset 0 0 0 30px #ffffff !important;
+}
+
 .btn:focus,
 .form-control:focus {
     box-shadow: none;
@@ -75,8 +126,10 @@ a:focus {
     max-width: 1366px;
 }
 
-[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
     font-size: inherit;
     margin-left: 0;
 }
@@ -123,13 +176,23 @@ a:focus {
 }
 
 @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .back-to-top {
@@ -311,17 +374,17 @@ a:focus {
         border-bottom: 1px solid rgba(255, 255, 255, .3);
         z-index: 9;
     }
-    
+
     .navbar.nav-sticky {
         padding: 10px 60px;
         background: #20212B !important;
         border-bottom: none;
     }
-    
+
     .page .navbar {
         background: #20212B !important;
     }
-    
+
     .navbar a.nav-link {
         padding: 8px 15px;
         font-size: 16px;
@@ -329,16 +392,16 @@ a:focus {
     }
 }
 
-@media (max-width: 991.98px) {   
+@media (max-width: 991.98px) {
     .navbar {
         padding: 15px;
         background: #20212B !important;
     }
-    
+
     .navbar a.nav-link {
         padding: 5px;
     }
-    
+
     .navbar .dropdown-menu {
         box-shadow: none;
     }
@@ -476,11 +539,11 @@ a:focus {
     .carousel .carousel-text h1 {
         font-size: 35px;
     }
-    
+
     .carousel .carousel-text p {
         font-size: 16px;
     }
-    
+
     .carousel .carousel-text .btn {
         padding: 12px 30px;
         font-size: 15px;
@@ -492,7 +555,7 @@ a:focus {
     .carousel .carousel-text h1 {
         font-size: 30px;
     }
-    
+
     .carousel .carousel-text .btn {
         padding: 10px 25px;
         font-size: 15px;
@@ -504,7 +567,7 @@ a:focus {
     .carousel .carousel-text h1 {
         font-size: 25px;
     }
-    
+
     .carousel .carousel-text .btn {
         padding: 8px 20px;
         font-size: 14px;
@@ -693,6 +756,7 @@ a:focus {
     border: 1px solid #ffffff;
     box-shadow: inset 0 0 0 30px #ffffff;
 }
+
 /*******************************/
 /******* Testimonial CSS *******/
 /*******************************/
@@ -927,10 +991,12 @@ a:focus {
 /*******************************/
 /********* Footer CSS **********/
 /*******************************/
+.pt-90{
+    padding-top: 90px;
+}
 .footer {
     position: relative;
     margin-top: 45px;
-    padding-top: 90px;
     background: #20212B;
 }
 
@@ -1046,5 +1112,32 @@ a:focus {
     .footer .copyright .col-md-6:last-child p {
         margin: 5px 0;
         text-align: center;
+    }
+}
+
+.bg-yellow {
+    background-color: #27282e !important;
+}
+
+.bg-black {
+    background: #20212B;
+}
+
+.font-white {
+    color: #ffffff !important;
+}
+
+.header-toggler{
+    color: #ffffff !important;
+}
+
+.table-border{
+    border: 1px solid #20212B;
+    tr{
+    border: 1px solid #20212B;
+    border-width: 1;
+    }
+    thead{
+    border: 1px solid #20212B !important;
     }
 }

@@ -12,8 +12,11 @@
 }
 
 .header {
-    background: #20212B !important;
     border: 0;
+
+    .nav-link {
+        color: #ffffff !important;
+    }
 }
 
 .form-control.form-profile {
