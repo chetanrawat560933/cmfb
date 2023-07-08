@@ -1,37 +1,24 @@
 import React, { useEffect, useState } from 'react'
+import json from '../../db/db.json'
 
 const InventoryManagement = () => {
-  const [data, getData] = useState([])
-  const URL = 'https://jsonplaceholder.typicode.com/posts'
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  const fetchData = () => {
-    fetch(URL)
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(response)
-        getData(response)
-      })
-  }
-
   return (
     <table className="table table-hover table-striped">
       <thead>
         <tr>
           <th>ID</th>
           <th>Name</th>
+          <th>Price</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
-        {data.map((item, i) => (
+        {json.inventory.map((item, i) => (
           <tr key={i}>
-            <td>{item.id}</td>
-            <td>{item.title}</td>
-            <td>{item.body}</td>
+            <td>{item.item_id}</td>
+            <td>{item.item_name}</td>
+            <td>{item.price}</td>
+            <td>{item.description}</td>
           </tr>
         ))}
       </tbody>

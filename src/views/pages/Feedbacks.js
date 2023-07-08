@@ -1,37 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import json from '../../db/db.json'
 
 const Feedbacks = () => {
-  const [data, getData] = useState([])
-  const URL = 'https://jsonplaceholder.typicode.com/posts'
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  const fetchData = () => {
-    fetch(URL)
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(response)
-        getData(response)
-      })
-  }
-
   return (
     <table className="table table-hover table-striped">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
+          <th>User</th>
+          <th>Date</th>
+          <th>Feedback</th>
         </tr>
       </thead>
       <tbody>
-        {data.map((item, i) => (
+        {json.feedbacks.map((item, i) => (
           <tr key={i}>
-            <td>{item.id}</td>
-            <td>{item.title}</td>
-            <td>{item.body}</td>
+            <td>{item.user_name}</td>
+            <td>{item.feedback_date}</td>
+            <td>{item.feedback_message}</td>
           </tr>
         ))}
       </tbody>
