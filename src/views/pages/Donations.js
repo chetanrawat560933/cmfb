@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import json from '../../db/db.json'
 
 const Donations = () => {
   const [data, getData] = useState([])
@@ -22,16 +23,18 @@ const Donations = () => {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
+          <th>User</th>
+          <th>Amount</th>
+          <th>Date</th>
         </tr>
       </thead>
       <tbody>
-        {data.map((item, i) => (
+        {json.donations.map((item, i) => (
           <tr key={i}>
             <td>{item.id}</td>
-            <td>{item.title}</td>
-            <td>{item.body}</td>
+            <td>{item.user_name}</td>
+            <td>{item.donation_amount}</td>
+            <td>{item.donation_date}</td>
           </tr>
         ))}
       </tbody>

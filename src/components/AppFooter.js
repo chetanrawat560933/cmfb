@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
+import { any } from 'prop-types'
 import React from 'react'
 
 export default function AppFooter(props) {
-  console.log(props.isAdmin, 'props')
   return (
     <div
       className={
