@@ -178,9 +178,9 @@ const Register = () => {
                       placeholder="Role"
                       required
                     >
-                      <option value="1">Volunteer</option>
-                      <option value="2">User</option>
-                      <option value="3">Admin</option>
+                      <option value="Volunteer">Volunteer</option>
+                      <option value="User">User</option>
+                      <option value="Admin">Admin</option>
                     </CFormSelect>
                   </CInputGroup>
                   <div className="d-grid">

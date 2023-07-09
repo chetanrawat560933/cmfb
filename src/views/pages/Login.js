@@ -35,8 +35,8 @@ const Login = () => {
       }
 
       axios.post('http://localhost:5040/food-bank/login', requestData).then((response) => {
-        console.log('User loggedin succesfully' + response)
-        if (response?.user.role === '3') {
+        console.log('User loggedin succesfully' + JSON.stringify(response))
+        if (response?.user?.role === 'Admin') {
           history('/dashboard')
         } else {
           history('/home')
