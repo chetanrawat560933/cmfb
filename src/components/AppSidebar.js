@@ -29,9 +29,10 @@ const AppSidebar = () => {
       onVisibleChange={(visible) => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
+      className="bg-black"
     >
       <CSidebarBrand className="d-none d-md-flex font-bold" to="/">
-        Canada Mobile Food Bank Online
+        CMFB
         {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} /> */}
         {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
       </CSidebarBrand>
@@ -40,10 +41,6 @@ const AppSidebar = () => {
           <AppSidebarNav items={navigation} />
         </SimpleBar>
       </CSidebarNav>
-      <CSidebarToggler
-        className="d-none d-lg-flex"
-        onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
-      />
     </CSidebar>
   )
 }

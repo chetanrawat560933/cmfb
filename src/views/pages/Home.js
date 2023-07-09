@@ -1,24 +1,21 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/no-unescaped-entities */
-import { cilBell } from '@coreui/icons'
-import CIcon from '@coreui/icons-react'
 import {
-  CButton,
-  CCarousel,
   CCarouselCaption,
   CCarouselItem,
   CRow,
   CCol,
   CContainer,
   CHeader,
-  CHeaderBrand,
   CHeaderNav,
   CNavItem,
   CNavLink,
+  CCarousel,
+  CButton,
 } from '@coreui/react'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { AppFooter, AppHeaderDropdown } from 'src/components'
+import { Link, NavLink } from 'react-router-dom'
+import { AppFooter } from 'src/components'
 import Carousel1 from 'src/assets/images/carousel-1.jpg'
 import Carousel2 from 'src/assets/images/carousel-2.jpg'
 import Carousel3 from 'src/assets/images/carousel-3.jpg'
@@ -31,7 +28,7 @@ import Contact from 'src/assets/images/contact.jpg'
 const Home = (props) => {
   return (
     <>
-      <CHeader position="sticky">
+      <CHeader position="sticky" className='bg-black'>
         <CContainer fluid>
           <CHeaderNav className="d-none d-md-flex me-auto">
             <CNavItem>
@@ -41,9 +38,11 @@ const Home = (props) => {
             </CNavItem>
           </CHeaderNav>
           <CHeaderNav>
-            <a className="btn btn-custom font-bold font-white" href="/">
+          <Link to="/find-food-bank">
+            <CButton className="btn-dark-yellow btn btn-custom font-bold font-white" active tabIndex={-1}>
               Find Food Bank
-            </a>
+            </CButton>
+            </Link>
             <a className="btn btn-custom font-bold font-white" href="/">
               Donate Now
             </a>
@@ -412,7 +411,7 @@ const Home = (props) => {
           </div>
         </CCol>
       </CRow>
-      <AppFooter />
+      <AppFooter isAdmin={false} />
     </>
   )
 }

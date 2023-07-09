@@ -178,14 +178,13 @@ const Register = () => {
                       placeholder="Role"
                       required
                     >
-                      <option>Select Role</option>
                       <option value="1">Volunteer</option>
                       <option value="2">User</option>
                       <option value="3">Admin</option>
                     </CFormSelect>
                   </CInputGroup>
                   <div className="d-grid">
-                    <CButton type="submit" color="primary">
+                    <CButton type="submit" className="btn-dark btn btn-custom">
                       Create Account
                     </CButton>
                   </div>
