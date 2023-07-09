@@ -15,24 +15,52 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilAddressBook, cilLockLocked, cilPhone, cilText, cilUser } from '@coreui/icons'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
-  const [email, setEmail] = useState()
-  const [address, setAddress] = useState()
-  const [phone, setPhone] = useState()
-  const [role, setRole] = useState()
-  const [name, setName] = useState()
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-
   const history = useNavigate()
+  const [formData, setFormData] = useState({
+    email: '',
+    address: '',
+    phone: '',
+    role: '',
+    name: '',
+    password: '',
+    confirmPassword: '',
+  })
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (email && password && confirmPassword && name && address && phone && role) {
-      history('/dashboard')
+    e.preventDefault() //synthetic event
+
+    if (formData.password !== formData.confirmPassword) {
+      console.error('Password and Confirm Password do not match')
+      return
+    }
+
+    try {
+      const requestData = {
+        email: formData.email,
+        address: formData.address,
+        phone: formData.phone,
+        role: formData.role,
+        name: formData.name,
+        password: formData.password,
+      }
+      axios.post('http://localhost:5040/food-bank/register', requestData).then((response) => {
+        console.log('User registered succesfully' + response)
+        if (response) {
+          history('/home')
+        }
+      })
+    } catch (error) {
+      console.error('Error registering user', error)
     }
   }
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value })
+  }
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -49,9 +77,12 @@ const Register = () => {
                       type="email"
                       placeholder="Email"
                       autoComplete="email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                     />
+                    {/* onChange={(e) => setEmail(e.target.value)} */}
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
@@ -61,7 +92,9 @@ const Register = () => {
                       type="text"
                       placeholder="Name"
                       autoComplete="name"
-                      onChange={(e) => setName(e.target.value)}
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       required
                     />
                   </CInputGroup>
@@ -75,7 +108,9 @@ const Register = () => {
                       autoComplete="new-password"
                       minLength={6}
                       maxLength={12}
-                      onChange={(e) => setPassword(e.target.value)}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
                       required
                     />
                   </CInputGroup>
@@ -90,12 +125,14 @@ const Register = () => {
                       autoComplete="new-password"
                       minLength={6}
                       maxLength={12}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
                       required
                     />
                   </CInputGroup>
-                  {password === confirmPassword ? null : password !== '' &&
-                    confirmPassword !== '' ? (
+                  {formData.password === formData.confirmPassword ? null : formData.password !==
+                      '' && formData.confirmPassword !== '' ? (
                     <div className="mb-2">
                       <span style={{ color: 'red' }}>Confirm password must match password.</span>
                     </div>
@@ -108,7 +145,9 @@ const Register = () => {
                       type="text"
                       placeholder="Address"
                       autoComplete="address"
-                      onChange={(e) => setAddress(e.target.value)}
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
                       required
                     />
                   </CInputGroup>
@@ -120,7 +159,9 @@ const Register = () => {
                       type="text"
                       placeholder="Phone"
                       autoComplete="phone"
-                      onChange={(e) => setPhone(e.target.value)}
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
                       required
                     />
                   </CInputGroup>
@@ -131,7 +172,9 @@ const Register = () => {
 
                     <CFormSelect
                       id="role"
-                      onChange={(e) => setRole(e.target.value)}
+                      name="role"
+                      value={formData.role}
+                      onChange={handleChange}
                       placeholder="Role"
                       required
                     >
