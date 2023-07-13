@@ -16,24 +16,41 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import axios from 'axios'
 
 const Login = () => {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
   const history = useNavigate()
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (email && password) {
-      if (email === 'user@gmail.com' && password === 'user12') {
-        history('/home')
-      } else if (email === 'admin@gmail.com' && password === 'admin12') {
-        history('/dashboard')
-      } else {
-        history('/dashboard')
+    e.preventDefault() //synthetic event
+
+    try {
+      const requestData = {
+        email: formData.email,
+        password: formData.password,
       }
+
+      axios.post('http://localhost:5040/food-bank/login', requestData).then((response) => {
+        console.log('User loggedin succesfully' + JSON.stringify(response))
+        if (response?.user?.role === 'Admin') {
+          history('/dashboard')
+        } else {
+          history('/home')
+        }
+      })
+    } catch (error) {
+      console.error('Error registering user', error)
     }
   }
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value })
+  }
+
   return (
     <div className="bg-black min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -51,10 +68,12 @@ const Login = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="email"
+                        name="email"
                         placeholder="Email"
                         autoComplete="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required="true"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -63,12 +82,14 @@ const Login = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
+                        name="password"
                         placeholder="Password"
                         autoComplete="current-password"
                         minLength={6}
                         maxLength={12}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required="true"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
                       />
                     </CInputGroup>
                     <CRow>
