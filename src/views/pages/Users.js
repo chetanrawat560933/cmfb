@@ -15,9 +15,6 @@ const Users = () => {
             console.log('check response' + response.data[0].role)
             setUsers(response.data)
           })
-        // console.log(response + 'Piyush')
-        // setUsers(response.data)
-        // console.log('almost complete func' + response.data)
       } catch (error) {
         console.error(error)
       }

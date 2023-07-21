@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
@@ -23,6 +24,10 @@ const Login = () => {
     password: '',
   })
   const history = useNavigate()
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
