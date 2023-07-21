@@ -19,10 +19,6 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import axios from 'axios'
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  })
   const history = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
