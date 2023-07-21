@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import json from "../../db/db.json";
 import axios from "axios";
 
 const Feedbacks = () => {

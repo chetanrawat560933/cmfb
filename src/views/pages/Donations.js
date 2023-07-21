@@ -40,14 +40,16 @@ const Donations = () => {
         </tr>
       </thead>
       <tbody>
-        {donations.map((item, i) => (
-          <tr key={i}>
-            <td>{item.id}</td>
-            <td>{item.user_name}</td>
-            <td>{item.donation_amount}</td>
-            <td>{item.donation_datetime}</td>
-          </tr>
-        ))}
+        {donations.length !== 0 ?
+          donations.map((item, i) => (
+            <tr key={i}>
+              <td>{item.id}</td>
+              <td>{item.user_name}</td>
+              <td>{item.donation_amount}</td>
+              <td>{item.donation_datetime}</td>
+            </tr>
+          )) : <p>No records found.</p>
+        }
       </tbody>
     </table>
   );
