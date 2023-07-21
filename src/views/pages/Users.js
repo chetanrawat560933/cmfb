@@ -8,11 +8,12 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         await axios
-          .get('http://localhost:5040/food-bank/getAllUsers', {
+          .get('http://localhost:5040/cmfb/user/getAllUsers', {
             timeout: 5000,
           })
           .then((response) => {
-            console.log('check response' + response)
+            console.log('check response' + response.data[0].role)
+            setUsers(response.data)
           })
         // console.log(response + 'Piyush')
         // setUsers(response.data)
@@ -38,16 +39,18 @@ const Users = () => {
         </tr>
       </thead>
       <tbody>
-        {users.map((item, i) => (
-          <tr key={i}>
-            <td>{i}</td>
-            <td>{item.name}</td>
-            <td>{item.role}</td>
-            <td>{item.email}</td>
-            <td>{item.phoneNumber}</td>
-            <td>{item.address}</td>
-          </tr>
-        ))}
+        {users.map((item, i) => {
+          return (
+            <tr key={i}>
+              <td>{i + 1}</td>
+              <td>{item.name}</td>
+              <td>{item.role ? item.role : 'N/A'}</td>
+              <td>{item.email}</td>
+              <td>{item.phone}</td>
+              <td>{item.address}</td>
+            </tr>
+          )
+        })}
       </tbody>
     </table>
   )
