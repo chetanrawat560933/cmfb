@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { CButton } from '@coreui/react'
 
 const Users = () => {
   const [users, setUsers] = useState([])
@@ -24,32 +25,35 @@ const Users = () => {
   }, [])
 
   return (
-    <table className="table table-hover table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Role</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((item, i) => {
-          return (
-            <tr key={i}>
-              <td>{i + 1}</td>
-              <td>{item.name}</td>
-              <td>{item.role ? item.role : 'N/A'}</td>
-              <td>{item.email}</td>
-              <td>{item.phone}</td>
-              <td>{item.address}</td>
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
+    <>
+    <CButton type="submit" className="addBtn btn-dark-yellow btn btn-custom">Add</CButton>
+      <table className="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((item, i) => {
+            return (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>{item.name}</td>
+                <td>{item.role ? item.role : 'N/A'}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>{item.address}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </>
   )
 }
 
