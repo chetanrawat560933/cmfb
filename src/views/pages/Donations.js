@@ -1,21 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import json from '../../db/db.json'
+// import json from '../../db/db.json'
+import axios from 'axios'
 
 const Donations = () => {
-  const [data, getData] = useState([])
-  const URL = 'https://jsonplaceholder.typicode.com/posts'
+  const [donations, setDonations] = useState([])
+  const URL = 'http://localhost:5040/cmfb/donation/getAllDonations'
 
   useEffect(() => {
     fetchData()
   }, [])
 
-  const fetchData = () => {
-    fetch(URL)
-      .then((res) => res.json())
+  const fetchData = async () => {
+    axios
+      .get(URL)
       .then((response) => {
-        console.log(response)
-        getData(response)
+        return response.data
       })
+      .then((data) => {
+        setDonations(data)
+        console.log(data)
+      })
+      .catch((error) => {
+        console.log(error.response.data.error)
+      })
+    try {
+      // let res = await axios({
+      //   method: 'get',
+      //   url: URL,
+      // })
+      // let data = res.data
+      // console.log(data)
+      // return data
+    } catch (error) {
+      console.log(error.response) // this is the main part. Use the response property from the error object
+      return error.response
+    }
   }
 
   return (
@@ -29,12 +48,12 @@ const Donations = () => {
         </tr>
       </thead>
       <tbody>
-        {json.donations.map((item, i) => (
+        {donations.map((item, i) => (
           <tr key={i}>
             <td>{item.id}</td>
             <td>{item.user_name}</td>
             <td>{item.donation_amount}</td>
-            <td>{item.donation_date}</td>
+            <td>{item.donation_datetime}</td>
           </tr>
         ))}
       </tbody>

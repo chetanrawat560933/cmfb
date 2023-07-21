@@ -26,7 +26,7 @@ const Login = () => {
   })
 
   const handleSubmit = async (e) => {
-    e.preventDefault() //synthetic event
+    e.preventDefault()
 
     try {
       const requestData = {
@@ -34,7 +34,7 @@ const Login = () => {
         password: formData.password,
       }
 
-      axios.post('http://localhost:5040/food-bank/login', requestData).then((response) => {
+      axios.post('http://localhost:5040/cmfb/user/login', requestData).then((response) => {
         console.log('User loggedin succesfully' + JSON.stringify(response))
         if (response?.user?.role === 'Admin') {
           history('/dashboard')
@@ -50,7 +50,6 @@ const Login = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
-
   return (
     <div className="bg-black min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -111,7 +110,7 @@ const Login = () => {
                 <CCardBody className="text-center">
                   <div className="createAccount">
                     <h2 className="font-white">Create Account!</h2>
-                    <h6 className="font-white">Sign up if you still don't have an account.</h6>
+                    <h6 className="font-white">Sign up if you still dont have an account.</h6>
                     <Link to="/register">
                       <CButton
                         className="mt-3 registerBtn btn-dark-yellow btn btn-custom"

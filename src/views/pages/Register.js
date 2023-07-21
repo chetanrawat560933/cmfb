@@ -46,7 +46,7 @@ const Register = () => {
         name: formData.name,
         password: formData.password,
       }
-      axios.post('http://localhost:5040/food-bank/register', requestData).then((response) => {
+      axios.post('http://localhost:5040/cmfb/user/register', requestData).then((response) => {
         console.log('User registered succesfully' + response)
         if (response) {
           history('/home')
