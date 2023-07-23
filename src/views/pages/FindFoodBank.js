@@ -13,13 +13,9 @@ const FindFoodBank = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          `https://dummyjson.com/products/search?q=${value}`
-        );
-
-        setSuggestions(data.products);
-        console.log(suggestions, 'suggestions')
-
+        const { data } = await axios.get(`http://localhost:5040/cmfb/foodBank/getAllFoodBanks`);
+        const suggestion = data?.filter((element)=> element.details.includes(value))
+        setSuggestions(suggestion);
       } catch (error) {
         console.log(error);
       }
@@ -28,25 +24,6 @@ const FindFoodBank = () => {
     fetchData();
   }, [value]);
 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const { data } = await axios.get(
-        `https://dummyjson.com/products/search?q=${value}`
-      );
-
-      setSuggestions(data.products);
-      console.log(suggestions, 'suggestions')
-
-    } catch (error) {
-      console.log(error);
-    }
-
-    setResult(suggestions.find((suggestion) => suggestion.title.includes(value)));
-    // suggestions.find((suggestion) => suggestion.title.includes(value))
-    console.log(result, 'result')
-  }
 
   return (
     <>
@@ -89,7 +66,7 @@ const FindFoodBank = () => {
               </div>
               <div className="col-lg-5">
                 <div className="donate-form p-0">
-                  <CForm onSubmit={handleSubmit}>
+                  <CForm>
                     <div className="control-group">
                       <input
                         type="text"
@@ -101,11 +78,6 @@ const FindFoodBank = () => {
                         }}
                       />
                     </div>
-                    {/* <div>
-                      <button className="btn btn-custom" type="submit">
-                        Find Food Bank
-                      </button>
-                    </div> */}
                   </CForm>
                 </div>
               </div>
@@ -120,7 +92,7 @@ const FindFoodBank = () => {
               suggestions?.map((suggestion, i) => {
                 return (<CCard key={i} className='foodBankCard'>
                   <CCardBody>
-                    {suggestion.title}
+                    {suggestion.details}
                   </CCardBody>
                 </CCard>
                 )
