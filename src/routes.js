@@ -21,7 +21,6 @@ const routes = [
   { path: '/inventory-management', name: 'Inventory Management', element: InventoryManagement },
   { path: '/donations', name: 'Donations', element: Donations },
   { path: '/feedbacks', name: 'Feedbacks', element: Feedbacks },
-  { path: '/find-food-bank', name: 'Find Food Bank', element: FindFoodBank },
 ]
 
 export default routes

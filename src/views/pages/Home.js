@@ -37,10 +37,10 @@ const Home = (props) => {
             </CNavItem>
           </CHeaderNav>
           <CHeaderNav>
-          <Link to="/find-food-bank">
-            <CButton className="btn-dark-yellow btn btn-custom font-bold font-white" active tabIndex={-1}>
-              Find Food Bank
-            </CButton>
+            <Link to="/find-food-bank">
+              <a className="btn btn-custom font-bold font-white" href="/">
+                Find Food Bank
+              </a>
             </Link>
             <a className="btn btn-custom font-bold font-white" href="/">
               Donate Now
