@@ -6,15 +6,14 @@ import { AppFooter } from 'src/components'
 import axios from 'axios';
 
 const FindFoodBank = () => {
-  const [value, setValue] = useState(''); // Here we'll store the value of the search bar's text input
-  const [suggestions, setSuggestions] = useState([]); // This is where we'll store the retrieved suggestions
-  const [result, setResult] = useState(null);
+  const [value, setValue] = useState(''); 
+  const [suggestions, setSuggestions] = useState([]); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`http://localhost:5040/cmfb/foodBank/getAllFoodBanks`);
-        const suggestion = data?.filter((element)=> element.details.includes(value))
+        const suggestion = data?.filter((element)=> element.details.toLowerCase().includes(value.toLowerCase()))
         setSuggestions(suggestion);
       } catch (error) {
         console.log(error);
