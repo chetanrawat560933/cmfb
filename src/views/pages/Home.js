@@ -10,10 +10,9 @@ import {
   CNavItem,
   CNavLink,
   CCarousel,
-  CButton,
 } from '@coreui/react'
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AppFooter } from 'src/components'
 import Carousel1 from 'src/assets/images/carousel-1.jpg'
 import Carousel2 from 'src/assets/images/carousel-2.jpg'
@@ -37,12 +36,10 @@ const Home = (props) => {
             </CNavItem>
           </CHeaderNav>
           <CHeaderNav>
-            <Link to="/find-food-bank">
-              <a className="btn btn-custom font-bold font-white" href="/">
-                Find Food Bank
-              </a>
-            </Link>
-            <a className="btn btn-custom font-bold font-white" href="/">
+            <a className="btn btn-custom font-bold font-white" href="/#/find-food-bank">
+              Find Food Bank
+            </a>
+            <a className="btn btn-custom font-bold font-white" href="/#/donate-now">
               Donate Now
             </a>
             <a className="btn btn-custom font-bold font-white" href="/#/login">

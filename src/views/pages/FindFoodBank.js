@@ -1,19 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 import { CCard, CCardBody, CCol, CContainer, CForm, CHeader, CHeaderNav, CNavItem, CNavLink } from '@coreui/react'
 import { useEffect, useState, React } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AppFooter } from 'src/components'
 import axios from 'axios';
 
 const FindFoodBank = () => {
-  const [value, setValue] = useState(''); 
-  const [suggestions, setSuggestions] = useState([]); 
+  const [value, setValue] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`http://localhost:5040/cmfb/foodBank/getAllFoodBanks`);
-        const suggestion = data?.filter((element)=> element.details.toLowerCase().includes(value.toLowerCase()))
+        const suggestion = data?.filter((element) => element.details.toLowerCase().includes(value.toLowerCase()))
         setSuggestions(suggestion);
       } catch (error) {
         console.log(error);
@@ -36,11 +36,12 @@ const FindFoodBank = () => {
             </CNavItem>
           </CHeaderNav>
           <CHeaderNav>
-            <Link to="/donate-now">
-              <a className="btn btn-custom font-bold font-white" href="/">
-                Donate Now
-              </a>
-            </Link>
+            <a className="btn btn-custom font-bold font-white" href="/#/home">
+              Home
+            </a>
+            <a className="btn btn-custom font-bold font-white" href="/#/donate-now">
+              Donate Now
+            </a>
             <a className="btn btn-custom font-bold font-white" href="/#/login">
               Login
             </a>
@@ -71,7 +72,7 @@ const FindFoodBank = () => {
                         type="text"
                         className="form-control"
                         value={value}
-                        placeholder="Search food banks..."
+                        placeholder="Search food banks by Zip code or Province..."
                         onChange={(e) => {
                           setValue(e.target.value);
                         }}
@@ -83,15 +84,26 @@ const FindFoodBank = () => {
             </div>
           </div>
         </div>
-        <div>
-        </div>
         <div className='bg-black borderNone'>
           {
-            suggestions.length === 0 ? null :
+            suggestions.length === 0 ? (
+              <CCard className='noRecords'>
+                <CCardBody>
+                  No records found.
+                </CCardBody>
+              </CCard>
+            ) :
               suggestions?.map((suggestion, i) => {
                 return (<CCard key={i} className='foodBankCard'>
                   <CCardBody>
-                    {suggestion.details}
+                    <div className="cardHeading">
+                      <p>Food Bank</p>
+                    </div>
+                    <p>{suggestion.details}</p>
+                    <p>{suggestion.address}</p>
+                    <p>{suggestion.zipCode}</p>
+                    <p>{suggestion.province}</p>
+                    Canada
                   </CCardBody>
                 </CCard>
                 )

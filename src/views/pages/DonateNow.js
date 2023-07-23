@@ -1,6 +1,6 @@
 import { CCol, CContainer, CHeader, CHeaderNav, CNavItem, CNavLink } from '@coreui/react'
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AppFooter } from 'src/components'
 
 const DonateNow = () => {
@@ -16,11 +16,12 @@ const DonateNow = () => {
                         </CNavItem>
                     </CHeaderNav>
                     <CHeaderNav>
-                        <Link to="/find-food-bank">
-                            <a className="btn btn-custom font-bold font-white" href="/">
-                                Find Food Bank
-                            </a>
-                        </Link>
+                        <a className="btn btn-custom font-bold font-white" href="/#/home">
+                            Home
+                        </a>
+                        <a className="btn btn-custom font-bold font-white" href="/#/find-food-bank">
+                            Find Food Bank
+                        </a>
                         <a className="btn btn-custom font-bold font-white" href="/#/login">
                             Login
                         </a>
