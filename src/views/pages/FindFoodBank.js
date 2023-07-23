@@ -99,11 +99,16 @@ const FindFoodBank = () => {
                     <div className="cardHeading">
                       <p>Food Bank</p>
                     </div>
-                    <p>{suggestion.details}</p>
-                    <p>{suggestion.address}</p>
-                    <p>{suggestion.zipCode}</p>
-                    <p>{suggestion.province}</p>
-                    Canada
+                    <p className='m-0'>4789 Oak Street,</p>
+                    <p className='m-0'>Montreal,</p>
+                    <p className='m-0'>Quebec, Canada</p>
+
+                    {/* <p>{suggestion.address}</p> */}
+                    {/* <p>{suggestion.zipCode}</p> */}
+                    {/* <p>{suggestion.province}</p> */}
+                    <p className='m-0'>123456</p>
+                    {/* <p className='m-0'>Canada</p> */}
+                    <p className='m-0'>Helpline: +1(123) 45656566</p>
                   </CCardBody>
                 </CCard>
                 )
