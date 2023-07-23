@@ -7,8 +7,6 @@ const InventoryManagement = React.lazy(() => import('./views/pages/InventoryMana
 const Users = React.lazy(() => import('./views/pages/Users'))
 const Donations = React.lazy(() => import('./views/pages/Donations'))
 const Feedbacks = React.lazy(() => import('./views/pages/Feedbacks'))
-const FindFoodBank = React.lazy(() => import('./views/pages/FindFoodBank'))
-
 const Login = React.lazy(() => import('./views/pages/Login'))
 
 const routes = [
@@ -21,7 +19,6 @@ const routes = [
   { path: '/inventory-management', name: 'Inventory Management', element: InventoryManagement },
   { path: '/donations', name: 'Donations', element: Donations },
   { path: '/feedbacks', name: 'Feedbacks', element: Feedbacks },
-  { path: '/find-food-bank', name: 'Find Food Bank', element: FindFoodBank },
 ]
 
 export default routes

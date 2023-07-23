@@ -5,7 +5,7 @@ export default function AppFooter(props) {
   return (
     <div
       className={
-        props.isAdmin !== undefined && !props.isAdmin ? 'footer bg-black pt-90' : 'footer bg-black'
+        props.isAdmin !== undefined && !props.isAdmin ? 'footer bg-black pt-90 m-0 borderNone' : 'footer bg-black'
       }
     >
       {props.isAdmin !== undefined && !props.isAdmin ? (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import {
   CRow,
   CCol,
@@ -11,9 +11,76 @@ import {
 import { getStyle } from '@coreui/utils'
 import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
-import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
+import { cilOptions } from '@coreui/icons'
+import axios from "axios";
 
 const WidgetsDropdown = () => {
+  const [getData, setData] = useState({
+    users: [],
+    donations: [],
+    foodbanks: [],
+    volunteers: []
+  })
+
+  const usersURL = "http://localhost:5040/cmfb/user/getAllUsers";
+  const donationsURL = "http://localhost:5040/cmfb/donation/getAllDonations";
+  const foodbankURL = "http://localhost:5040/cmfb/foodBank/getAllFoodBanks";
+
+  useEffect(() => {
+    fetchData();
+    fetchFoodbanks();
+    fetchDonations();
+  }, []);
+
+  const fetchData = async () => {
+    axios
+      .get(usersURL)
+      .then((response) => {
+        return response.data;
+      })
+      .then((res) => {
+        console.log(res);
+        if (res) {
+          setData({ ...getData, users: res });
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data.error);
+      });
+  };
+
+  const fetchFoodbanks = async () => {
+    axios
+      .get(foodbankURL)
+      .then((response) => {
+        return response.data;
+      })
+      .then((res) => {
+        console.log(res);
+        if (res) {
+          setData({ ...getData, foodbanks: res });
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data.error);
+      });
+  };
+
+  const fetchDonations = async () => {
+    axios
+      .get(donationsURL)
+      .then((response) => {
+        return response.data;
+      })
+      .then((res) => {
+        console.log(getData);
+        setData({ ...getData, donations: res });
+      })
+      .catch((error) => {
+        console.log(error.response.data.error);
+      });
+  };
+
   return (
     <CRow>
       <CCol sm={6} lg={3}>
@@ -22,10 +89,7 @@ const WidgetsDropdown = () => {
           color="primary"
           value={
             <>
-              26K{' '}
-              <span className="fs-6 fw-normal">
-                (-12.4% <CIcon icon={cilArrowBottom} />)
-              </span>
+              {getData?.users?.length}
             </>
           }
           title="Users"
@@ -109,10 +173,7 @@ const WidgetsDropdown = () => {
           color="info"
           value={
             <>
-              $6.200{' '}
-              <span className="fs-6 fw-normal">
-                (40.9% <CIcon icon={cilArrowTop} />)
-              </span>
+              $6.200
             </>
           }
           title="Donations"
@@ -195,10 +256,7 @@ const WidgetsDropdown = () => {
           color="warning"
           value={
             <>
-              1000
-              <span className="fs-6 fw-normal">
-                (84.7% <CIcon icon={cilArrowTop} />)
-              </span>
+              60
             </>
           }
           title="Volunteers"
@@ -268,10 +326,7 @@ const WidgetsDropdown = () => {
           color="danger"
           value={
             <>
-              44K{' '}
-              <span className="fs-6 fw-normal">
-                (-23.6% <CIcon icon={cilArrowBottom} />)
-              </span>
+              {getData?.foodbanks?.length}
             </>
           }
           title="Food Banks"

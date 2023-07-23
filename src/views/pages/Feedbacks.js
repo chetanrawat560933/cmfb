@@ -1,7 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import json from '../../db/db.json'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Feedbacks = () => {
+  const [feedbacks, setFeedbacks] = useState([]);
+  const URL = "http://localhost:5040/cmfb/feedback/getAllFeedBacks";
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      axios
+        .get(URL)
+        .then((response) => {
+          return response.data;
+        })
+        .then((data) => {
+          console.log(data);
+          setFeedbacks(data);
+        })
+        .catch((error) => {
+          console.log(error.response.data.error);
+        });
+    } catch (error) {
+      console.log(error.response);
+      return error.response;
+    }
+  };
+
   return (
     <table className="table table-hover table-striped">
       <thead>
@@ -12,16 +39,18 @@ const Feedbacks = () => {
         </tr>
       </thead>
       <tbody>
-        {json.feedbacks.map((item, i) => (
+        { feedbacks.length !== 0?
+        feedbacks.map((item, i) => (
           <tr key={i}>
             <td>{item.user_name}</td>
             <td>{item.feedback_date}</td>
             <td>{item.feedback_message}</td>
           </tr>
-        ))}
+        )) : <p>No records found.</p>
+        }
       </tbody>
     </table>
-  )
-}
+  );
+};
 
-export default Feedbacks
+export default Feedbacks;

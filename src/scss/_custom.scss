@@ -3,6 +3,9 @@
     font-size: 40px;
 }
 
+.noRecord{
+    margin: 0 auto !important;
+}
 .font-bold {
     font-weight: bold !important;
 }
@@ -58,4 +61,59 @@
 
 .card-step-2 {
     width: 550px;
+}
+
+
+.addBtn{
+    padding: 8px 20px !important;
+    border-radius: 10px !important;
+}
+
+.borderNone{
+    border: none !important;
+}
+
+.p-0{
+    padding: 0px;
+}
+
+.foodBankCard{
+    // margin: 20px 60px 0px 60px;
+    color: #20212B !important;
+    width: 50%;
+    // position: relative;
+    // left: 20%;
+    // right: 20%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.addForm{
+    margin: 20px 0;
+}
+
+.formLabel{
+    padding: 0 3px !important;
+    color: #20212B;
+}
+
+.noRecords{
+    text-align: center !important;
+}
+
+.color-yellow{
+    color: #fdbe33;
+}
+.cardHeading{
+    color: #fdbe33;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 !important;
+}
+.modal-dialog{
+    margin: 20% auto !important;
+}
+
+.modal-footer{
+    padding: 4px !important;
 }
