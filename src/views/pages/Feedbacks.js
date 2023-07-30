@@ -18,7 +18,7 @@ const Feedbacks = () => {
         })
         .then((data) => {
           console.log(data);
-          setFeedbacks(data);
+          setFeedbacks(data?.data? data?.data: data);
         })
         .catch((error) => {
           console.log(error.response.data.error);
