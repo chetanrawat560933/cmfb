@@ -94,9 +94,9 @@ const FoodBanks = () => {
                   <CInputGroup className="mb-3">
                     <CFormInput
                       type="text"
-                      name='zipCode'
+                      name='zipcode'
                       placeholder="Enter Zip Code"
-                      value={formData?.zipCode}
+                      value={formData?.zipcode}
                       onChange={handleChange}
                       required
                     />
@@ -109,9 +109,9 @@ const FoodBanks = () => {
               <CInputGroup className="mb-3">
                 <CFormInput
                   type="text"
-                  name='details'
+                  name='address'
                   placeholder="Enter Address"
-                  value={formData?.details}
+                  value={formData?.address}
                   onChange={handleChange}
                   required
                 />
