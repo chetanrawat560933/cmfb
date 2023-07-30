@@ -17,7 +17,7 @@ const Donations = () => {
           return response.data;
         })
         .then((data) => {
-          setDonations(data);
+          setDonations(data?.data? data.data: data);
           console.log(data);
         })
         .catch((error) => {

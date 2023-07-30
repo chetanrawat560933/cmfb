@@ -23,7 +23,7 @@ const InventoryManagement = () => {
         })
         .then((data) => {
           console.log(data);
-          setInventoryData(data);
+          setInventoryData(data?.data? data.data: data);
         })
         .catch((error) => {
           console.log(error.response.data.error);

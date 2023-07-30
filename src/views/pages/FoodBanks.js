@@ -24,7 +24,7 @@ const FoodBanks = () => {
         })
         .then((data) => {
           console.log(data);
-          setFoodbanks(data);
+          setFoodbanks(data?.data? data?.data: data);
         })
         .catch((error) => {
           console.log(error.response.data.error);
@@ -154,14 +154,21 @@ const FoodBanks = () => {
             <tr>
               <th>ID</th>
               <th>Address</th>
+              <th>Province</th>
+              <th>Zip Code</th>
+              <th>Helpline</th>
             </tr>
           </thead>
           <tbody>
-            {foodbanks.length !== 0 ?
-              foodbanks.map((item, i) => (
+            {foodbanks?.length !== 0 ?
+              foodbanks?.map((item, i) => (
                 <tr key={i}>
                   <td>{i + 1}</td>
-                  <td>{item.details}</td>
+                  <td>{item.address}</td>
+                  <td>{item.province}</td>
+                  <td>{item.zipcode}</td>
+                  <td>{item.helpline}</td>
+
                   <td onClick={() => { setAdd(false); setFormData(item); }}><CIcon icon={cilPen} /></td>
                   <td onClick={() => { confirmDeletion(item) }}><CIcon icon={cilTrash} /></td>
                 </tr>

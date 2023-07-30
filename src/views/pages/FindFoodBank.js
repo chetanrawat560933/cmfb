@@ -13,7 +13,8 @@ const FindFoodBank = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`http://localhost:5040/cmfb/foodBank/getAllFoodBanks`);
-        const suggestion = data?.filter((element) => element.details.toLowerCase().includes(value.toLowerCase()))
+        const res = data?.data? data.data: data;
+        const suggestion = res?.filter((element) => element.details.toLowerCase().includes(value.toLowerCase()))
         setSuggestions(suggestion);
       } catch (error) {
         console.log(error);
