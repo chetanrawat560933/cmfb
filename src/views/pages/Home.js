@@ -62,7 +62,7 @@ const Home = (props) => {
                   nutritious food and make a difference today!
                 </p>
                 <div className="carousel-btn">
-                  <a className="btn btn-custom" href="/">
+                  <a className="btn btn-custom" href="/#/donate-now">
                     Donate Now
                   </a>
                 </div>
@@ -79,7 +79,7 @@ const Home = (props) => {
                   one meal at a time.
                 </p>
                 <div className="carousel-btn">
-                  <a className="btn btn-custom" href="/">
+                  <a className="btn btn-custom" href="/#/donate-now">
                     Donate Now
                   </a>
                 </div>
@@ -96,7 +96,7 @@ const Home = (props) => {
                   inclusive food support across Canada.
                 </p>
                 <div className="carousel-btn">
-                  <a className="btn btn-custom" href="/">
+                  <a className="btn btn-custom" href="/#/donate-now">
                     Donate Now
                   </a>
                 </div>

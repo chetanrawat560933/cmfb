@@ -16,8 +16,32 @@ import CIcon from '@coreui/icons-react'
 import { cilAddressBook, cilLockLocked, cilPhone, cilText, cilUser } from '@coreui/icons'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Snackbar from './Snackbar'
+import { error } from 'console'
 
 const Register = () => {
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // 'success', 'error', 'warning', 'info'
+
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  };
+
+  const showSnackbar = (message, severity = 'success') => {
+    setSnackbarMessage(message);
+    setSnackbarSeverity(severity);
+    setSnackbarOpen(true);
+  };
+
+
+
   const history = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
@@ -52,8 +76,14 @@ const Register = () => {
           history('/home')
         }
       })
+      // .catch(error){
+      //   console.error('Error registering user', error)
+      //   showSnackbar('This is a success message', 'success')
+      // }
+      // showSnackbar('This is an error message', 'error')
     } catch (error) {
       console.error('Error registering user', error)
+      showSnackbar('This is a success message', 'success')
     }
   }
 
@@ -174,10 +204,12 @@ const Register = () => {
                       id="role"
                       name="role"
                       value={formData.role}
+                      
                       onChange={handleChange}
                       placeholder="Role"
                       required
                     >
+                      <option>Select Role</option>
                       <option value="Volunteer">Volunteer</option>
                       <option value="User">User</option>
                       <option value="Admin">Admin</option>
@@ -194,6 +226,13 @@ const Register = () => {
           </CCol>
         </CRow>
       </CContainer>
+
+      <Snackbar
+        open={snackbarOpen}
+        message={snackbarMessage}
+        onClose={handleSnackbarClose}
+        severity={snackbarSeverity}
+      />
     </div>
   )
 }

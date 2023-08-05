@@ -14,8 +14,12 @@ const FindFoodBank = () => {
       try {
         const { data } = await axios.get(`http://localhost:5040/cmfb/foodBank/getAllFoodBanks`);
         const res = data?.data? data.data: data;
-        const suggestion = res?.filter((element) => element.details.toLowerCase().includes(value.toLowerCase()))
+        console.log(res, data);
+
+        const suggestion = res.filter(item => item.zipcode.includes(value.toLowerCase()) || item.province.includes(value.toLowerCase()));
+        // const suggestion = res?.filter((element) => element.details.toLowerCase().includes(value.toLowerCase()))
         setSuggestions(suggestion);
+        console.log(suggestion);
       } catch (error) {
         console.log(error);
       }
@@ -100,16 +104,12 @@ const FindFoodBank = () => {
                     <div className="cardHeading">
                       <p>Food Bank</p>
                     </div>
-                    <p className='m-0'>4789 Oak Street,</p>
-                    <p className='m-0'>Montreal,</p>
-                    <p className='m-0'>Quebec, Canada</p>
+                    
 
-                    {/* <p>{suggestion.address}</p> */}
-                    {/* <p>{suggestion.zipCode}</p> */}
-                    {/* <p>{suggestion.province}</p> */}
-                    <p className='m-0'>123456</p>
-                    {/* <p className='m-0'>Canada</p> */}
-                    <p className='m-0'>Helpline: +1(123) 45656566</p>
+                    <p><b>Address:</b> {suggestion.address}</p> 
+                    <p><b>Zip Code:</b> {suggestion.zipcode}</p>
+                    <p><b>Province:</b> {suggestion.province}</p>
+                    <p className='m-0'><b>Helpline:</b> <a href="tel:`${suggestion.helpline}`">{suggestion.helpline}</a></p>
                   </CCardBody>
                 </CCard>
                 )
