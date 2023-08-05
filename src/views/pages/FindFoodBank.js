@@ -104,8 +104,6 @@ const FindFoodBank = () => {
                     <div className="cardHeading">
                       <p>Food Bank</p>
                     </div>
-                    
-
                     <p><b>Address:</b> {suggestion.address}</p> 
                     <p><b>Zip Code:</b> {suggestion.zipcode}</p>
                     <p><b>Province:</b> {suggestion.province}</p>

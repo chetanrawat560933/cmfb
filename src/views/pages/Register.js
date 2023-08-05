@@ -17,41 +17,24 @@ import { cilAddressBook, cilLockLocked, cilPhone, cilText, cilUser } from '@core
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Snackbar from './Snackbar'
-import { error } from 'console'
-
+import './../../scss/snackbar.scss'
 const Register = () => {
-
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // 'success', 'error', 'warning', 'info'
-
-
-  const handleSnackbarClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setSnackbarOpen(false);
-  };
-
-  const showSnackbar = (message, severity = 'success') => {
-    setSnackbarMessage(message);
-    setSnackbarSeverity(severity);
-    setSnackbarOpen(true);
-  };
-
-
-
   const history = useNavigate()
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
   const [formData, setFormData] = useState({
     email: '',
     address: '',
     phone: '',
-    role: '',
+    role: 'User',
     name: '',
     password: '',
     confirmPassword: '',
   })
+
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault() //synthetic event
@@ -61,7 +44,6 @@ const Register = () => {
       return
     }
 
-    try {
       const requestData = {
         email: formData.email,
         address: formData.address,
@@ -70,21 +52,30 @@ const Register = () => {
         name: formData.name,
         password: formData.password,
       }
-      axios.post('http://localhost:5040/cmfb/user/register', requestData).then((response) => {
-        console.log('User registered succesfully' + response)
-        if (response) {
-          history('/home')
-        }
-      })
-      // .catch(error){
-      //   console.error('Error registering user', error)
-      //   showSnackbar('This is a success message', 'success')
-      // }
-      // showSnackbar('This is an error message', 'error')
-    } catch (error) {
-      console.error('Error registering user', error)
-      showSnackbar('This is a success message', 'success')
-    }
+        axios.post('http://localhost:5040/cmfb/user/register', requestData).then((response) => {
+          console.log('User registered succesfully' + response)
+          if (response) {
+            localStorage.setItem('userData', JSON.stringify(response.data.data));
+            setSnackbarMessage('User registered Successfully!');
+            setShowSnackbar(true);
+            history('/home')
+          }
+        }).catch((error) => {
+          console.error('Error registering user:', error);
+          if (error.response) {
+            console.log('Server responded with:', error.response.data);
+            setSnackbarMessage(error.response.data.message? error.response.data.message: 'Error registering user');
+            setShowSnackbar(true);
+          } else if (error.request) {
+            console.log('No response received:', error.request);
+            setSnackbarMessage('No response received');
+            setShowSnackbar(true);
+          } else {
+            console.log('Error setting up the request:', error.message);
+            setSnackbarMessage('Error setting up the request');
+            setShowSnackbar(true);
+          }
+        });
   }
 
   const handleChange = (event) => {
@@ -112,7 +103,6 @@ const Register = () => {
                       onChange={handleChange}
                       required
                     />
-                    {/* onChange={(e) => setEmail(e.target.value)} */}
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
@@ -204,15 +194,13 @@ const Register = () => {
                       id="role"
                       name="role"
                       value={formData.role}
-                      
                       onChange={handleChange}
                       placeholder="Role"
                       required
                     >
-                      <option>Select Role</option>
-                      <option value="Volunteer">Volunteer</option>
                       <option value="User">User</option>
                       <option value="Admin">Admin</option>
+                      <option value="Volunteer">Volunteer</option>
                     </CFormSelect>
                   </CInputGroup>
                   <div className="d-grid">
@@ -226,13 +214,11 @@ const Register = () => {
           </CCol>
         </CRow>
       </CContainer>
-
-      <Snackbar
-        open={snackbarOpen}
-        message={snackbarMessage}
-        onClose={handleSnackbarClose}
-        severity={snackbarSeverity}
-      />
+      <div>
+      {showSnackbar && (
+        <Snackbar message={snackbarMessage} onClose={handleCloseSnackbar} />
+      )}
+    </div>
     </div>
   )
 }

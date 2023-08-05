@@ -11,19 +11,76 @@ import {
   CNavLink,
   CCarousel,
 } from '@coreui/react'
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { AppFooter } from 'src/components'
 import Carousel1 from 'src/assets/images/carousel-1.jpg'
 import Carousel2 from 'src/assets/images/carousel-2.jpg'
 import Carousel3 from 'src/assets/images/carousel-3.jpg'
 import AboutImg from 'src/assets/images/about.jpg'
-import Testimonial1 from 'src/assets/images/testimonial-1.jpg'
-import Testimonial2 from 'src/assets/images/testimonial-2.jpg'
-import Testimonial3 from 'src/assets/images/testimonial-3.jpg'
 import Contact from 'src/assets/images/contact.jpg'
+import axios from 'axios'
+import Snackbar from './Snackbar'
 
 const Home = (props) => {
+  const [logoutVal, setLogoutVal] = useState(false);
+  const history = useNavigate();
+  const [formData, setFormData] = useState({
+    feedback_message: '',
+    feedback_date: new Date(),
+    user_name: '',
+  });
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
+  useEffect(() => {
+    const localStorageData = localStorage.getItem('userData');
+    if (localStorageData) {
+      setLogoutVal(true);
+    }
+  }, []);
+
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    history('/login')
+  }
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const requestData = {
+        feedback_message: formData.feedback_message,
+        feedback_date: new Date(),
+        user_name: formData.user_name,
+        // user_id: formData.user_id,
+      }
+
+      axios.post('http://localhost:5040/cmfb/feedback/feedBack', requestData).then((response) => {
+        console.log(response)
+        if (response) {
+          setFormData({
+            feedback_message: '',
+            feedback_date: new Date(),
+            user_name: '',
+          });
+          setSnackbarMessage('Feedback sent Successfully!');
+          setShowSnackbar(true);
+        }
+      })
+    } catch (error) {
+      console.error('Error registering user', error)
+    }
+  }
+
   return (
     <>
       <CHeader position="sticky" className='bg-black'>
@@ -42,9 +99,17 @@ const Home = (props) => {
             <a className="btn btn-custom font-bold font-white" href="/#/donate-now">
               Donate Now
             </a>
-            <a className="btn btn-custom font-bold font-white" href="/#/login">
-              Login
-            </a>
+            {logoutVal ? (
+              <a className="btn btn-custom font-bold font-white" onClick={logout}>
+                Logout
+              </a>
+            ) :
+              (
+                <a className="btn btn-custom font-bold font-white" href="/#/login">
+                  Login
+                </a>
+              )}
+
           </CHeaderNav>
         </CContainer>
       </CHeader>
@@ -182,9 +247,9 @@ const Home = (props) => {
           <div className="donate" data-parallax="scroll" data-image-src="img/donate.jpg">
             <div className="container">
               <div className="row align-items-center">
-                <div className="col-lg-7">
+                <div className="col-lg-12">
                   <div className="donate-content">
-                    <div className="section-header">
+                    <div className="section-header text-center">
                       <p>Donate Now</p>
                       <h2>Change Lives, Donate Today!</h2>
                     </div>
@@ -196,44 +261,11 @@ const Home = (props) => {
                         positive change. Thank you for your support!
                       </p>
                     </div>
-                  </div>
-                </div>
-                <div className="col-lg-5">
-                  <div className="donate-form">
-                    <form>
-                      <div className="control-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Name"
-                          required="required"
-                        />
-                      </div>
-                      <div className="control-group">
-                        <input
-                          type="email"
-                          className="form-control"
-                          placeholder="Email"
-                          required="required"
-                        />
-                      </div>
-                      <div className="btn-group" data-toggle="buttons">
-                        <label className="btn btn-custom active">
-                          <input type="radio" name="options" checked /> $10
-                        </label>
-                        <label className="btn btn-custom">
-                          <input type="radio" name="options" /> $20
-                        </label>
-                        <label className="btn btn-custom">
-                          <input type="radio" name="options" /> $30
-                        </label>
-                      </div>
-                      <div>
-                        <button className="btn btn-custom" type="submit">
-                          Donate Now
-                        </button>
-                      </div>
-                    </form>
+                    <div className="text-center" >
+                      <a className="btn btn-custom font-bold font-white" href="/#/donate-now">
+                        Donate Now
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -309,42 +341,26 @@ const Home = (props) => {
               <div className="owl-carousel testimonials-carousel">
                 <div className="testimonial-item">
                   <div className="testimonial-profile">
-                    <img src={Testimonial1} alt="testimonial1" />
                     <div className="testimonial-name">
                       <h3>John D.</h3>
-                      <p>Single Parent</p>
+                      <p>Convenient and quality food support! Grateful for Canada Mobile Food Bank.</p>
                     </div>
-                  </div>
-                  <div className="testimonial-text">
-                    <p>
-                      Convenient and quality food support! Grateful for Canada Mobile Food Bank.
-                    </p>
                   </div>
                 </div>
                 <div className="testimonial-item">
                   <div className="testimonial-profile">
-                    <img src={Testimonial2} alt="testimonial2" />
                     <div className="testimonial-name">
                       <h3>Jennifer K.</h3>
-                      <p>Volunteer</p>
+                      <p>Volunteering here is rewarding and inspiring. Proud to be part of this team.</p>
                     </div>
-                  </div>
-                  <div className="testimonial-text">
-                    <p>
-                      Volunteering here is rewarding and inspiring. Proud to be part of this team.
-                    </p>
                   </div>
                 </div>
                 <div className="testimonial-item">
                   <div className="testimonial-profile">
-                    <img src={Testimonial3} alt="testimonial3" />
                     <div className="testimonial-name">
                       <h3>David L.</h3>
-                      <p>Donor</p>
+                      <p>Every dollar counts. Together, we make a hunger-free Canada.</p>
                     </div>
-                  </div>
-                  <div className="testimonial-text">
-                    <p>Every dollar counts. Together, we make a hunger-free Canada.</p>
                   </div>
                 </div>
               </div>
@@ -363,14 +379,17 @@ const Home = (props) => {
               </div>
               <div className="contact-form">
                 <div id="success"></div>
-                <form name="sentMessage" id="contactForm" noValidate="novalidate">
+                <form name="sentMessage" id="contactForm" onSubmit={handleSubmit}>
                   <div className="control-group">
                     <input
                       type="text"
+                      name='user_name'
                       className="form-control"
-                      id="name"
+                      id="user_name"
                       placeholder="Your Name"
                       required="required"
+                      value={formData.user_name}
+                      onChange={handleChange}
                       data-validation-required-message="Please enter your name"
                     />
                     <p className="help-block text-danger"></p>
@@ -378,9 +397,12 @@ const Home = (props) => {
                   <div className="control-group">
                     <input
                       type="email"
+                      name='email'
                       className="form-control"
                       id="email"
                       placeholder="Your Email"
+                      value={formData.email}
+                      onChange={handleChange}
                       required="required"
                       data-validation-required-message="Please enter your email"
                     />
@@ -389,8 +411,11 @@ const Home = (props) => {
                   <div className="control-group">
                     <textarea
                       className="form-control"
-                      id="message"
+                      id="feedback_message"
+                      name='feedback_message'
                       placeholder="Message"
+                      value={formData.feedback_message}
+                      onChange={handleChange}
                       required="required"
                       data-validation-required-message="Please enter your message"
                     ></textarea>
@@ -407,6 +432,9 @@ const Home = (props) => {
           </div>
         </CCol>
       </CRow>
+      {showSnackbar && (
+        <Snackbar message={snackbarMessage} onClose={handleCloseSnackbar} />
+      )}
       <AppFooter isAdmin={false} />
     </>
   )

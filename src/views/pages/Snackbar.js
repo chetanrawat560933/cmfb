@@ -1,19 +1,27 @@
-import React from 'react';
-import SnackbarMaterial from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import React, { useState, useEffect } from 'react';
+import './../../scss/snackbar.scss'; // You need to create this CSS file
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+const Snackbar = ({ message, duration = 3000, onClose }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-function Snackbar({ open, message, onClose, severity }) {
+  useEffect(() => {
+    setIsOpen(true);
+
+    const timeout = setTimeout(() => {
+      setIsOpen(false);
+      if (onClose) {
+        onClose();
+      }
+    }, duration);
+
+    return () => clearTimeout(timeout);
+  }, [duration, onClose]);
+
   return (
-    <SnackbarMaterial open={open} autoHideDuration={6000} onClose={onClose}>
-      <Alert onClose={onClose} severity={severity}>
-        {message}
-      </Alert>
-    </SnackbarMaterial>
+    <div className={`snackbar ${isOpen ? 'show' : ''}`}>
+      <p className='m-0'>{message}</p>
+    </div>
   );
-}
+};
 
 export default Snackbar;

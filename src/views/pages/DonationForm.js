@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { CCol, CContainer, CForm, CFormInput, CFormSelect, CHeader, CHeaderNav, CInputGroup, CNavItem, CNavLink } from '@coreui/react';
+import { CCol, CContainer, CHeader, CHeaderNav, CNavItem, CNavLink } from '@coreui/react';
 import { AppFooter } from 'src/components';
 import { NavLink } from 'react-router-dom';
 import './../../scss/donationForm.scss'
