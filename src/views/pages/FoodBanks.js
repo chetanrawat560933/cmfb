@@ -3,6 +3,7 @@ import axios from "axios";
 import { CButton, CCard, CCardBody, CCol, CForm, CFormInput, CInputGroup, CModal, CModalBody, CModalFooter, CRow } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilPen, cilTrash } from '@coreui/icons';
+import Snackbar from './Snackbar';
 
 const FoodBanks = () => {
   const [foodbanks, setFoodbanks] = useState([]);
@@ -10,7 +11,12 @@ const FoodBanks = () => {
   const [add, setAdd] = useState(true);
   const [formData, setFormData] = useState('')
   const [visible, setVisible] = useState(false)
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,7 +30,7 @@ const FoodBanks = () => {
         })
         .then((data) => {
           console.log(data);
-          setFoodbanks(data?.data? data?.data: data);
+          setFoodbanks(data?.data ? data?.data : data);
         })
         .catch((error) => {
           console.log(error.response.data.error);
@@ -42,26 +48,26 @@ const FoodBanks = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData, e, 'formdata');
-    try {
-      if (formData?._id) {
-        axios.put(`http://localhost:5040/cmfb/foodBank/foodBank/${formData._id}`, formData).then((response) => {
-          console.log('DATA' + JSON.stringify(response));
-          setAdd(true);
-          fetchData();
-        })
-      }
-      else {
-        axios.post(`http://localhost:5040/cmfb/foodBank/foodbank`, formData).then((response) => {
-          console.log('DATA' + JSON.stringify(response));
-          setAdd(true);
-          fetchData();
-        })
-      }
-
-
-    } catch (error) {
-      console.error('Error updating food bank', error)
+    if (formData?._id) {
+      axios.put(`http://localhost:5040/cmfb/foodBank/foodBank/${formData._id}`, formData).then((response) => {
+        console.log('DATA' + JSON.stringify(response));
+        setAdd(true);
+        setSnackbarMessage('Food bank updated Successfully!');
+        setShowSnackbar(true);
+        fetchData();
+      })
     }
+    else {
+      axios.post(`http://localhost:5040/cmfb/foodBank/foodbank`, formData).then((response) => {
+        console.log('DATA' + JSON.stringify(response));
+        setSnackbarMessage('Food bank saved Successfully!');
+        setShowSnackbar(true);
+        setAdd(true);
+        fetchData();
+      })
+    }
+
+
   }
 
   const deleteFoodBank = () => {
@@ -188,7 +194,9 @@ const FoodBanks = () => {
           <CButton className="addBtn btn-dark-yellow btn btn-custom" onClick={() => deleteFoodBank()}>Yes</CButton>
         </CModalFooter>
       </CModal>
-
+      {showSnackbar && (
+        <Snackbar message={snackbarMessage} onClose={handleCloseSnackbar} />
+      )}
     </>
   )
 }
