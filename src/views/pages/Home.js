@@ -38,6 +38,7 @@ const Home = (props) => {
     const localStorageData = localStorage.getItem('userData');
     if (localStorageData) {
       setLogoutVal(true);
+      setFormData({...formData, user_name: JSON.parse(localStorageData).name, email: JSON.parse(localStorageData).email })
     }
   }, []);
 
@@ -392,6 +393,7 @@ const Home = (props) => {
                       required="required"
                       value={formData.user_name}
                       onChange={handleChange}
+                      readOnly={logoutVal}
                       data-validation-required-message="Please enter your name"
                     />
                     <p className="help-block text-danger"></p>
@@ -406,6 +408,7 @@ const Home = (props) => {
                       value={formData.email}
                       onChange={handleChange}
                       required="required"
+                      readOnly={logoutVal}
                       data-validation-required-message="Please enter your email"
                     />
                     <p className="help-block text-danger"></p>

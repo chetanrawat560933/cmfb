@@ -34,7 +34,7 @@ const Donations = () => {
       <thead>
         <tr>
           <th>ID</th>
-          {/* <th>User</th> */}
+          <th>User</th>
           <th>Amount</th>
           <th>Date</th>
         </tr>
@@ -44,9 +44,9 @@ const Donations = () => {
           donations.map((item, i) => (
             <tr key={i}>
               <td>{i+1}</td>
-              {/* <td>{item.user_name}</td> */}
-              <td>{item.donation_amount? item.donation_amount: '10'}</td>
-              <td>{item.donation_datetime}</td>
+              <td>{item.user_name}</td>
+              <td>${item.donation_amount? item.donation_amount: '10'}</td>
+              <td>{new Date(item.donation_datetime).toLocaleDateString()}</td>
             </tr>
           )) : <p>No records found.</p>
         }

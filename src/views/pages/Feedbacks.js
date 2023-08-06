@@ -43,7 +43,7 @@ const Feedbacks = () => {
         feedbacks.map((item, i) => (
           <tr key={i}>
             <td>{item.user_name}</td>
-            <td>{item.feedback_date}</td>
+            <td>{new Date(item.feedback_date).toLocaleDateString()}</td>
             <td>{item.feedback_message}</td>
           </tr>
         )) : <p>No records found.</p>

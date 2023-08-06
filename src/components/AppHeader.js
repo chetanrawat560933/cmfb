@@ -31,9 +31,9 @@ const AppHeader = () => {
         >
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
-        <CHeaderBrand className="mx-auto d-md-none" to="/">
+        {/* <CHeaderBrand className="mx-auto d-md-none" to="/">
           <img src={logo} alt="Logo" />
-        </CHeaderBrand>
+        </CHeaderBrand> */}
         <CHeaderNav className="d-none d-md-flex me-auto font-white">
           <CNavItem>
             <CNavLink to="/dashboard" component={NavLink}>
