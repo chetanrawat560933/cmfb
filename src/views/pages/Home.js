@@ -28,6 +28,7 @@ const Home = (props) => {
   const [formData, setFormData] = useState({
     feedback_message: '',
     feedback_date: new Date(),
+    email: '',
     user_name: '',
   });
   const [showSnackbar, setShowSnackbar] = useState(false);
@@ -61,7 +62,7 @@ const Home = (props) => {
         feedback_message: formData.feedback_message,
         feedback_date: new Date(),
         user_name: formData.user_name,
-        // user_id: formData.user_id,
+        email: formData.email,
       }
 
       axios.post('http://localhost:5040/cmfb/feedback/feedBack', requestData).then((response) => {
@@ -71,6 +72,7 @@ const Home = (props) => {
             feedback_message: '',
             feedback_date: new Date(),
             user_name: '',
+            email: ''
           });
           setSnackbarMessage('Feedback sent Successfully!');
           setShowSnackbar(true);

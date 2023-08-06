@@ -24,7 +24,7 @@ const DonationForm = () => {
             type: 'card',
             card: cardElement,
         });
-
+        
         if (error) {
             console.error('Error creating payment method:', error);
             setLoading(false);
@@ -32,7 +32,7 @@ const DonationForm = () => {
         }
 
         try {
-            const response = await axios.post('/donate', {
+            const response = await axios.post('http://localhost:5040/cmfb/donation/donate', {
                 amount: parseFloat(amount),
                 date,
                 username,
@@ -40,7 +40,7 @@ const DonationForm = () => {
                 paymentMethodId: paymentMethod.id,
             });
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 alert('Donation successful!');
             } else {
                 alert('Donation failed!');

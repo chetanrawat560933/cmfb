@@ -24,8 +24,9 @@ const Users = () => {
           timeout: 5000,
         })
         .then((response) => {
-          console.log('check response' + response.data[0].role)
-          setUsers(response.data)
+          console.log('check response' + response)
+          setUsers(response.data.data ? response.data.data : response.data)
+
         })
     } catch (error) {
       console.error(error)
