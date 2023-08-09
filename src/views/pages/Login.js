@@ -41,11 +41,11 @@ const Login = () => {
     }
 
     axios.post('http://localhost:5040/cmfb/user/login', requestData).then((response) => {
-      console.log('User loggedin succesfully' + JSON.stringify(response));
+      console.log('User loggedin succesfully' , response);
       localStorage.setItem('userData', JSON.stringify(response?.data?.data))
       setSnackbarMessage('Logged in Sucessfully!');
       setShowSnackbar(true);
-      if (response?.user?.role === 'Admin') {
+      if (response?.data?.data?.role.toLowerCase().includes('admin')) {
         history('/dashboard')
       } else {
         history('/home')

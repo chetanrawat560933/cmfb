@@ -15,11 +15,9 @@ const FindFoodBank = () => {
         const { data } = await axios.get(`http://localhost:5040/cmfb/foodBank/getAllFoodBanks`);
         const res = data?.data? data.data: data;
         console.log(res, data);
-
-        const suggestion = res.filter(item => item.zipcode.includes(value.toLowerCase()) || item.province.includes(value.toLowerCase()));
-        // const suggestion = res?.filter((element) => element.details.toLowerCase().includes(value.toLowerCase()))
-        setSuggestions(suggestion);
-        console.log(suggestion);
+          const suggestion = res.filter(item => item.zipcode.includes(value.toLowerCase()) || item.province.includes(value.toLowerCase()));
+          setSuggestions(suggestion);
+          console.log(suggestion);
       } catch (error) {
         console.log(error);
       }

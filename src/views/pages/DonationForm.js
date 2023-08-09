@@ -142,11 +142,11 @@ const DonationForm = () => {
                                     </div> */}
                                     <div className="form-group">
                                         <label htmlFor="username">Name:</label>
-                                        <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                                        <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} readOnly={logoutVal}/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="email">Email:</label>
-                                        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} readOnly={logoutVal} />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="card-element">Card Details:</label>
