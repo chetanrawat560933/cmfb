@@ -20,7 +20,14 @@ const WidgetsDropdown = () => {
     donations: [],
     foodbanks: [],
     volunteers: []
-  })
+  });
+  const [users, setUsers] = useState([])
+  const [foodbanks, setFoodbanks] = useState([])
+  const [donations, setDonations] = useState([])
+  const [volunteers, setVolunteers] = useState([])
+
+
+
 
   const usersURL = "http://localhost:5040/cmfb/user/getAllUsers";
   const donationsURL = "http://localhost:5040/cmfb/donation/getAllDonations";
@@ -41,7 +48,9 @@ const WidgetsDropdown = () => {
       .then((res) => {
         console.log(res);
         if (res) {
-          setData({ ...getData, users: res });
+          setUsers(res.data? res.data: res);
+          let volunteers =  res.data.filter((el) => (el.role.toLowerCase().includes('volunteer')));
+          setVolunteers(volunteers);
         }
       })
       .catch((error) => {
@@ -58,7 +67,7 @@ const WidgetsDropdown = () => {
       .then((res) => {
         console.log(res);
         if (res) {
-          setData({ ...getData, foodbanks: res });
+          setFoodbanks(res.data? res.data: res);
         }
       })
       .catch((error) => {
@@ -73,8 +82,12 @@ const WidgetsDropdown = () => {
         return response.data;
       })
       .then((res) => {
-        console.log(getData);
-        setData({ ...getData, donations: res });
+        console.log(res);
+        let totalAmount = 0;
+        res.data.forEach((el) => {
+          totalAmount += el.donation_amount;
+        });
+        setDonations(totalAmount);
       })
       .catch((error) => {
         console.log(error.response.data.error);
@@ -89,7 +102,7 @@ const WidgetsDropdown = () => {
           color="primary"
           value={
             <>
-              {getData?.users?.length}
+              {users?.length}
             </>
           }
           title="Users"
@@ -173,7 +186,7 @@ const WidgetsDropdown = () => {
           color="info"
           value={
             <>
-              $6.200
+              ${donations}
             </>
           }
           title="Donations"
@@ -256,7 +269,7 @@ const WidgetsDropdown = () => {
           color="warning"
           value={
             <>
-              60
+              {volunteers.length}
             </>
           }
           title="Volunteers"
@@ -326,7 +339,7 @@ const WidgetsDropdown = () => {
           color="danger"
           value={
             <>
-              {getData?.foodbanks?.length}
+              {foodbanks?.length}
             </>
           }
           title="Food Banks"
